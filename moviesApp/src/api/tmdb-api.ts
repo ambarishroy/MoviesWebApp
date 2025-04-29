@@ -78,4 +78,33 @@ export const getMovie = (id: string) => {
         throw error;
       });
   };
+  export const getPopularActors = (page: number = 1) => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/popular?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US&page=${page}`
+    )
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(`Failed to fetch actors. Status: ${response.status}`);
+        return response.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+  export const getActorMovieCredits = (actorId: number | string) => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/${actorId}/movie_credits?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
+    )
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(`Failed to fetch actor credits. Status: ${response.status}`);
+        return response.json();
+      })
+      .then((json) => json.cast)
+      .catch((error) => {
+        throw error;
+      });
+  };
+  
+  
   

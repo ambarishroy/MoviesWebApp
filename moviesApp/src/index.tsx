@@ -13,7 +13,7 @@ import AddMovieReviewPage from './pages/addMovieReviewPage';
 import PopularMovies from './pages/PopularMovies'
 import ActorsPage from "./pages/actorsPage";
 import ActorDetailsPage from "./pages/actorDetailsPage";
-
+import TvSeriesPage from "./pages/tvSeriesPage";
 
 
 const queryClient = new QueryClient({
@@ -42,6 +42,7 @@ const App = () => {
         <Route path="/movies/popular" element={<PopularMovies />} />
         <Route path="/actors" element={<ActorsPage />} />
         <Route path="/actors/:actorId" element={<ActorDetailsPage />} />
+        <Route path="/tvseries" element={<TvSeriesPage />} />
       </Routes>
       </MoviesContextProvider>
     </BrowserRouter>

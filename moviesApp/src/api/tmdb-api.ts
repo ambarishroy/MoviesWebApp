@@ -118,7 +118,20 @@ export const getMovie = (id: string) => {
         throw error;
       });
   };
-  
+  export const getTVSeries = (id: string) => {
+    return fetch(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
+    )
+      .then((response) => {
+        if (!response.ok)
+          throw new Error(`Failed to get TV Series data. Status: ${response.status}`);
+        return response.json();
+      })
+      .catch((error) => {
+        throw error;
+      });
+  };
+    
   
   
   

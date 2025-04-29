@@ -92,15 +92,50 @@ const SiteHeader: React.FC = () => {
             </>
           ) : (
             <>
-              {menuOptions.map((opt) => (
-                <Button
-                  key={opt.label}
-                  color="inherit"
-                  onClick={() => handleMenuSelect(opt.path)}
-                >
-                  {opt.label}
-                </Button>
-              ))}
+          <>
+            
+
+              <Button color="inherit" onClick={() => navigate("/")}>
+                Home
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/movies/popular")}>
+                Popular
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/actors")}>
+                Actors
+              </Button>
+              <Button color="inherit" onClick={() => navigate("/tvseries")}>
+                TV Series
+              </Button>
+              <Button
+              color="inherit"
+              onClick={handleMenu}
+            >
+            Favorites
+          </Button>
+            <Menu
+              id="favorites-menu"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={() => setAnchorEl(null)}
+              anchorOrigin={{
+                vertical: "bottom",
+                horizontal: "left",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "left",
+              }}
+            >
+              <MenuItem onClick={() => { handleMenuSelect("/movies/favourites"); setAnchorEl(null); }}>
+                Favorite Movies
+              </MenuItem>
+              <MenuItem onClick={() => { handleMenuSelect("/tvseries/favourites"); setAnchorEl(null); }}>
+                Favorite TV Series
+              </MenuItem>
+            </Menu>
+            </>
+
             </>
           )}
         </Toolbar>

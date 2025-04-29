@@ -7,17 +7,27 @@ interface MovieContextInterface {
     addToFavourites: ((movie: BaseMovieProps) => void);
     removeFromFavourites: ((movie: BaseMovieProps) => void);
     addReview: ((movie: BaseMovieProps, review: Review) => void);  // NEW
+    favouriteTVSeries: number[];
+    addToFavouriteTVSeries: (series: BaseMovieProps) => void;
+    removeFromFavouriteTVSeries: (id: number) => void;
 }
 const initialContextState: MovieContextInterface = {
     favourites: [],
     addToFavourites: () => {},
     removeFromFavourites: () => {},
     addReview: (movie, review) => { movie.id, review},  // NEW
+    favouriteTVSeries: [],
+    addToFavouriteTVSeries: () => {},
+    removeFromFavouriteTVSeries: () => {},
 };
 
 export const MoviesContext = React.createContext<MovieContextInterface>(initialContextState);
 
-const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+    const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+    const [favouriteTVSeries, setFavouriteTVSeries] = useState<number[]>([]);
+    const addToFavouriteTVSeries = (series: BaseMovieProps) => {
+        setFavouriteTVSeries([...favouriteTVSeries, series.id]);
+    };
     const [favourites, setFavourites] = useState<number[]>([]);
     const [myReviews, setMyReviews] = useState<Review[]>( [] ) 
     const addToFavourites = useCallback((movie: BaseMovieProps) => {
@@ -34,6 +44,10 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
     const removeFromFavourites = useCallback((movie: BaseMovieProps) => {
         setFavourites((prevFavourites) => prevFavourites.filter((mId) => mId !== movie.id));
     }, []);
+    const removeFromFavouriteTVSeries = (id: number) => {
+        setFavouriteTVSeries(favouriteTVSeries.filter((seriesId) => seriesId !== id));
+      };
+      
 
     return (
         <MoviesContext.Provider
@@ -41,7 +55,10 @@ const MoviesContextProvider: React.FC<React.PropsWithChildren> = ({ children }) 
                 favourites,
                 addToFavourites,
                 removeFromFavourites,
-                addReview
+                addReview,
+                favouriteTVSeries,         
+                addToFavouriteTVSeries,
+                removeFromFavouriteTVSeries
             }}
         >
             {children}

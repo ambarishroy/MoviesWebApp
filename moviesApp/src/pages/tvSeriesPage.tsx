@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { getPopularTVSeries } from "../api/tmdb-api";
 import { Grid, Typography } from "@mui/material";
 import MovieCard from "../components/movieCard"; 
-import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import { BaseMovieProps } from "../types/interfaces";
+import AddToFavouriteTVSeriesIcon from "../components/cardIcons/addToFavouriteTVSeries";
 
 const tvSeriesPage: React.FC = () => {
   const [tvSeries, setTvSeries] = useState<BaseMovieProps[]>([]);
@@ -14,7 +14,11 @@ const tvSeriesPage: React.FC = () => {
     const load = async () => {
       try {
         const data = await getPopularTVSeries(page);
-        setTvSeries(data.results);
+        const mappedTvSeries = data.results.map((series: any) => ({
+            ...series,
+            release_date: series.first_air_date || "Unknown",
+          }));
+        setTvSeries(mappedTvSeries);
         setTotalPages(data.total_pages);
       } catch (err) {
         console.error(err);
@@ -35,7 +39,7 @@ const tvSeriesPage: React.FC = () => {
             <Grid key={series.id} item xs={12} sm={6} md={4} lg={3}>
               <MovieCard
                 movie={series}
-                action={(series: BaseMovieProps) => <AddToFavouritesIcon {...series} />}
+                action={(series) => <AddToFavouriteTVSeriesIcon series={series} />}
               />
             </Grid>
           ))

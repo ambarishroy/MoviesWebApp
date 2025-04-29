@@ -1,17 +1,15 @@
-import React, { useContext } from "react"
+import React, { useContext } from "react";
 import PageTemplate from "../components/templateMovieListPage";
 import { MoviesContext } from "../contexts/moviesContext";
 import { useQueries } from "react-query";
-import { getMovie } from "../api/tmdb-api";
+import { getTVSeries } from "../api/tmdb-api";
 import Spinner from "../components/spinner";
 import useFiltering from "../hooks/useFiltering";
 import MovieFilterUI, {
   titleFilter,
   genreFilter,
 } from "../components/movieFilterUI";
-import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
-import WriteReview from "../components/cardIcons/writeReview";
-
+import RemoveFromFavouritesTVSeries from "../components/cardIcons/RemoveFromFavouritesTVSeries";
 const titleFiltering = {
   name: "title",
   value: "",
@@ -23,32 +21,39 @@ const genreFiltering = {
   condition: genreFilter,
 };
 
-const FavouriteMoviesPage: React.FC = () => {
-  const { favourites: movieIds } = useContext(MoviesContext);
+const FavouriteTVSeriesPage: React.FC = () => {
+  const { favouriteTVSeries: seriesIds } = useContext(MoviesContext);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
     [titleFiltering, genreFiltering]
   );
 
-  const favouriteMovieQueries = useQueries(
-    movieIds.map((movieId) => {
+  const favouriteTVSeriesQueries = useQueries(
+    seriesIds.map((seriesId) => {
       return {
-        queryKey: ["movie", movieId],
-        queryFn: () => getMovie(movieId.toString()),
+        queryKey: ["tvseries", seriesId],
+        queryFn: () => getTVSeries(seriesId.toString()),
       };
     })
   );
 
-  const isLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
+  const isLoading = favouriteTVSeriesQueries.find((s) => s.isLoading === true);
 
   if (isLoading) {
     return <Spinner />;
   }
+  if (seriesIds.length === 0) {
+    return <h2>No Favorite TV Series yet!</h2>;
+  }
+  const allFavourites = favouriteTVSeriesQueries
+  .filter((q) => q.isSuccess && q.data)
+  .map((q) => ({
+    ...q.data,
+    title: q.data.name || "Unknown",
+    release_date: q.data.first_air_date || "Unknown",
+  }));
+  console.log("Mapped Favourites:", allFavourites);
 
-  const allFavourites = favouriteMovieQueries.map((q) => q.data);
-  const displayedMovies = allFavourites
-    ? filterFunction(allFavourites)
-    : [];
-
+  const displayedSeries = filterFunction(allFavourites);
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
     const updatedFilterSet =
@@ -61,13 +66,12 @@ const FavouriteMoviesPage: React.FC = () => {
   return (
     <>
       <PageTemplate
-        title="Favourite Movies"
-        movies={displayedMovies}
-        action={(movie) => {
+        title="Favourite TV Series"
+        movies={displayedSeries}
+        action={(series) => {
           return (
             <>
-              <RemoveFromFavourites {...movie} />
-              <WriteReview {...movie} />
+              <RemoveFromFavouritesTVSeries {...series} />
             </>
           );
         }}
@@ -81,4 +85,4 @@ const FavouriteMoviesPage: React.FC = () => {
   );
 };
 
-export default FavouriteMoviesPage;
+export default FavouriteTVSeriesPage;

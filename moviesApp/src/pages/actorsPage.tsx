@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getPopularActors } from "../api/tmdb-api";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 
 interface Actor {
@@ -56,6 +56,15 @@ const ActorsPage: React.FC = () => {
                 </Typography>
               </div>
             </Link>
+            <Button
+              variant="outlined"
+              size="small"
+              component={Link}
+              to={`/actors/${actor.id}/info`}
+              style={{ marginTop: "8px" }}
+            >
+              More Info
+            </Button>
           </Grid>
         ))}
       </Grid>

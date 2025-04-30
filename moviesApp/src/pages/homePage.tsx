@@ -21,11 +21,17 @@ const genreFiltering = {
   value: "0",
   condition: genreFilter,
 };
-
+const sortFiltering = {
+  name: "sort",
+  value: "",
+  condition: () => true,
+};
 const HomePage: React.FC = () => {
   const { data, error, isLoading, isError } = useQuery<DiscoverMovies, Error>("discover", getMovies);
   const { filterValues, setFilterValues, filterFunction } = useFiltering(
-    [titleFiltering, genreFiltering]
+    [ titleFiltering,
+      genreFiltering,
+      sortFiltering,]
   );
 
   if (isLoading) {
@@ -39,16 +45,20 @@ const HomePage: React.FC = () => {
 
   const changeFilterValues = (type: string, value: string) => {
     const changedFilter = { name: type, value: value };
-    const updatedFilterSet =
-      type === "title"
-        ? [changedFilter, filterValues[1]]
-        : [filterValues[0], changedFilter];
+    const updatedFilterSet = filterValues.map((f) =>
+      f.name === type ? changedFilter : f
+    );
     setFilterValues(updatedFilterSet);
   };
 
   const movies = data ? data.results : [];
-  const displayedMovies = filterFunction(movies);
-
+  let displayedMovies = filterFunction(movies);
+  const sortOption = filterValues[2].value;
+  if (sortOption === "title") {
+    displayedMovies = [...displayedMovies].sort((a, b) => a.title.localeCompare(b.title));
+  } else if (sortOption === "rating") {
+    displayedMovies = [...displayedMovies].sort((a, b) => b.vote_average - a.vote_average);
+  }
   return (
     <>
       <PageTemplate

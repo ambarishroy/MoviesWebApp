@@ -100,13 +100,27 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
       </CardContent>
     </Card>
     <Card sx={styles.root} variant="outlined">
-        <CardContent>
-          <Typography variant="h5" component="h1">
-            <SortIcon fontSize="large" />
-            Sort the movies.
-          </Typography>
-        </CardContent>
-      </Card>
+  <CardContent>
+    <Typography variant="h5" component="h1">
+      <SortIcon fontSize="large" />
+      Sort the movies.
+    </Typography>
+    <FormControl sx={styles.formControl}>
+      <InputLabel id="sort-label">Sort By</InputLabel>
+      <Select
+        labelId="sort-label"
+        id="sort-select"
+        defaultValue=""
+        onChange={(e) => onUserInput("sort", e.target.value)}
+      >
+        <MenuItem value="">None</MenuItem>
+        <MenuItem value="title">Title</MenuItem>
+        <MenuItem value="rating">Rating</MenuItem>
+      </Select>
+    </FormControl>
+  </CardContent>
+</Card>
+
       </>
   );
 }

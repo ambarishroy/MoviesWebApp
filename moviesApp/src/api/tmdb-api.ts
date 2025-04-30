@@ -131,6 +131,15 @@ export const getMovie = (id: string) => {
         throw error;
       });
   };
+  export const getActorDetails = (actorId: string) => {
+    return fetch(
+      `https://api.themoviedb.org/3/person/${actorId}?api_key=${import.meta.env.VITE_TMDB_KEY}&language=en-US`
+    ).then((res) => {
+      if (!res.ok) throw new Error(`Actor not found (status ${res.status})`);
+      return res.json();
+    });
+  };
+  
     
   
   

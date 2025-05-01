@@ -104,6 +104,9 @@ const SiteHeader: React.FC = () => {
               <Button color="inherit" onClick={() => navigate("/actors")}>
                 Actors
               </Button>
+              <Button color="inherit" onClick={() => navigate("/fantasy-movie")}>
+                Fantasy Movie
+              </Button>
               <Button color="inherit" onClick={() => navigate("/tvseries")}>
                 TV Series
               </Button>

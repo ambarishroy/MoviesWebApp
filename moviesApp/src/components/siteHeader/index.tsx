@@ -11,6 +11,7 @@ import Menu from "@mui/material/Menu";
 import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 const styles = {
     title: {
@@ -42,7 +43,9 @@ const SiteHeader: React.FC = () => {
   const handleMenu = (event: MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
-
+  const [accountAnchorEl, setAccountAnchorEl] = useState<null | HTMLElement>(null);
+  const accountMenuOpen = Boolean(accountAnchorEl);
+  
   return (
     <>
       <AppBar position="fixed" elevation={0} color="primary">
@@ -89,13 +92,11 @@ const SiteHeader: React.FC = () => {
                   </MenuItem>
                 ))}
               </Menu>
-            </>
+            </>          
           ) : (
             <>
           <>
-            
-
-              <Button color="inherit" onClick={() => navigate("/")}>
+          <Button color="inherit" onClick={() => navigate("/")}>
                 Home
               </Button>
               <Button color="inherit" onClick={() => navigate("/movies/popular")}>
@@ -141,7 +142,36 @@ const SiteHeader: React.FC = () => {
 
             </>
           )}
+          <IconButton
+            color="inherit"
+            aria-label="account menu"
+            onClick={(event) => setAccountAnchorEl(event.currentTarget)}
+          >
+            <MoreVertIcon />
+          </IconButton>
+
         </Toolbar>
+          <Menu
+            id="account-menu"
+            anchorEl={accountAnchorEl}
+            open={accountMenuOpen}
+            onClose={() => setAccountAnchorEl(null)}
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            transformOrigin={{ vertical: "top", horizontal: "right" }}
+          >
+            <MenuItem onClick={() => {
+              setAccountAnchorEl(null);
+              navigate("/signin");
+            }}>
+              Sign In
+            </MenuItem>
+            <MenuItem onClick={() => {
+              setAccountAnchorEl(null);
+              alert("Logged out!");
+            }}>
+              Logout
+            </MenuItem>
+          </Menu>
       </AppBar>
       <Offset />
     </>

@@ -7,6 +7,7 @@ import {
   MenuItem,
   Box,
 } from "@mui/material";
+import Header from "../components/headerMovieList";
 
 const genres = [
   "Action", "Adventure", "Comedy", "Drama", "Fantasy",
@@ -43,10 +44,9 @@ const FantasyMoviePage: React.FC = () => {
   };
 
   return (
+    <div>
+      <Header title="Your fantasy movie" />
     <Box sx={{ maxWidth: 600, margin: "auto", padding: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Create Your Fantasy Movie
-      </Typography>
       <form onSubmit={handleSubmit}>
         <Grid container spacing={2}>
           <Grid item xs={12}>
@@ -130,6 +130,7 @@ const FantasyMoviePage: React.FC = () => {
         </Grid>
       </form>
     </Box>
+    </div>
   );
 };
 

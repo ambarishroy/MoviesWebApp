@@ -11,6 +11,7 @@ import MovieFilterUI, {
 } from "../components/movieFilterUI";
 import RemoveFromFavourites from "../components/cardIcons/removeFromFavourites";
 import WriteReview from "../components/cardIcons/writeReview";
+import Header from "../components/headerMovieList";
 
 const titleFiltering = {
   name: "title",
@@ -57,7 +58,7 @@ const FavouriteMoviesPage: React.FC = () => {
   };
 
   const toDo = () => true;
-
+<Header title="Favourite Movies" />
   return (
     <>
       <PageTemplate

@@ -6,6 +6,7 @@ import Spinner from "../components/spinner";
 import MovieCard from "../components/movieCard";
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import { BaseMovieProps } from "../types/interfaces";
+import Header from "../components/headerMovieList";
 
 const ActorInfoPage: React.FC = () => {
   const { actorId } = useParams<{ actorId: string }>();
@@ -41,8 +42,10 @@ const ActorInfoPage: React.FC = () => {
 
   if (loading || !actor) return <Spinner />;
 
-  return (
+  return (  
     <div style={{ padding: "2rem" }}>
+      <Header title={`Movies Featuring ${actor.name}`} />
+
       <Grid container spacing={4}>
         <Grid item xs={12} md={4}>
           <img

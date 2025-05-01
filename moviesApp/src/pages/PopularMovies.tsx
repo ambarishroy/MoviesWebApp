@@ -7,6 +7,7 @@ import { BaseMovieProps } from "../types/interfaces";
 import FilterMoviesCard from "../components/filterMoviesCard";
 import useFiltering from "../hooks/useFiltering";
 import MovieFilterUI, { titleFilter, genreFilter } from "../components/movieFilterUI";
+import Header from "../components/headerMovieList";
 
 const PopularMovies: React.FC = () => {
   const [movies, setMovies] = useState<BaseMovieProps[]>([]);
@@ -67,12 +68,12 @@ if (sortOption === "title") {
   
   return (
     <div>
-      <h1>Popular Movies</h1>
+     <Header title="Popuplar Movies" />
       <MovieFilterUI
-  onFilterValuesChange={changeFilterValues}
-  titleFilter={filterValues[0].value}
-  genreFilter={filterValues[1].value}
-/>
+        onFilterValuesChange={changeFilterValues}
+        titleFilter={filterValues[0].value}
+        genreFilter={filterValues[1].value}
+      />
      
 
       <Grid container spacing={5}>

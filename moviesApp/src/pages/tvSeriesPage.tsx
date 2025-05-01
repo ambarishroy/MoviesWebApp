@@ -6,6 +6,7 @@ import { BaseMovieProps } from "../types/interfaces";
 import AddToFavouriteTVSeriesIcon from "../components/cardIcons/addToFavouriteTVSeries";
 import MovieFilterUI, { titleFilter, genreFilter } from "../components/movieFilterUI";
 import useFiltering from "../hooks/useFiltering";
+import Header from "../components/headerMovieList";
 
 const tvSeriesPage: React.FC = () => {
   const [tvSeries, setTvSeries] = useState<BaseMovieProps[]>([]);
@@ -69,9 +70,7 @@ const tvSeriesPage: React.FC = () => {
 
   return (
     <div>
-      <Typography variant="h3" align="center" gutterBottom>
-        Popular TV Series
-      </Typography>
+     <Header title="TV Series" />
       <MovieFilterUI
   onFilterValuesChange={changeFilterValues}
   titleFilter={filterValues[0].value}

@@ -10,6 +10,7 @@ import MovieFilterUI, {
   genreFilter,
 } from "../components/movieFilterUI";
 import RemoveFromFavouritesTVSeries from "../components/cardIcons/RemoveFromFavouritesTVSeries";
+import Header from "../components/headerMovieList";
 const titleFiltering = {
   name: "title",
   value: "",
@@ -62,7 +63,7 @@ const FavouriteTVSeriesPage: React.FC = () => {
   };
 
   const toDo = () => true;
-
+<Header title="Favourite TV Series" />
   return (
     <>
       <PageTemplate

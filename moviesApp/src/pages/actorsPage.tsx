@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { getPopularActors } from "../api/tmdb-api";
 import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import Header from "../components/headerMovieList";
 
 interface Actor {
   id: number;
@@ -31,9 +32,9 @@ const ActorsPage: React.FC = () => {
   return (
     <div>
       <Typography variant="h3" align="center" gutterBottom>
-        Popular Actors
+        <Header title="Popuplar actors" />
       </Typography>
-
+      
       <Grid container spacing={4} justifyContent="center">
         {actors.map((actor) => (
           <Grid key={actor.id} item xs={12} sm={6} md={4} lg={3}>

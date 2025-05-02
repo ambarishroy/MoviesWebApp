@@ -5,6 +5,7 @@ import { Grid, Typography } from "@mui/material";
 import MovieCard from "../components/movieCard"; 
 import AddToFavouritesIcon from "../components/cardIcons/addToFavourites";
 import { BaseMovieProps } from "../types/interfaces";
+import Header from "../components/headerMovieList";
 
 const ActorDetailsPage: React.FC = () => {
   const { actorId } = useParams<{ actorId: string }>();
@@ -26,9 +27,7 @@ const ActorDetailsPage: React.FC = () => {
 
   return (
     <div>
-      <Typography variant="h3" align="center" gutterBottom>
-        Movies Acted In
-      </Typography>
+      <Header title={"Movies acted in"} />
 
       <Grid container spacing={4} justifyContent="center">
         {movies.length > 0 ? (

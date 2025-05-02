@@ -12,6 +12,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity": "^3.799.0",
+    "@aws-sdk/client-dynamodb": "^3.799.0",
+    "@aws-sdk/credential-provider-cognito-identity": "^3.799.0",
+    "@aws-sdk/credential-providers": "^3.799.0",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
     "@mui/icons-material": "^5.3.1",

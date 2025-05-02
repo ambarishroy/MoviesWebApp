@@ -167,6 +167,10 @@ const SiteHeader: React.FC = () => {
             </MenuItem>
             <MenuItem onClick={() => {
               setAccountAnchorEl(null);
+              localStorage.removeItem("token");
+              localStorage.removeItem("username");
+              localStorage.removeItem("awsCredentials");
+              navigate("/");
               alert("Logged out!");
             }}>
               Logout

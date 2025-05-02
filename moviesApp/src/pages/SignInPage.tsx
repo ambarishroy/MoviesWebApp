@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { fromCognitoIdentityPool } from "@aws-sdk/credential-provider-cognito-identity";
 
 interface SignInResponse {
     message: string;
@@ -36,6 +37,18 @@ const SignInPage: React.FC = () => {
       localStorage.setItem("token", token);
       localStorage.setItem("username", username);
 
+      const identityPoolId = "eu-west-1:0374f1d3-94a9-49eb-8004-0f3135625c2a";
+      const credentials = fromCognitoIdentityPool({
+        clientConfig: { region: "eu-west-1" },
+        identityPoolId,
+        logins: {
+          "cognito-idp.eu-west-1.amazonaws.com/eu-west-1_qSJ2S2w7W": token,
+        },
+      });
+      
+       const awsCreds = await credentials();
+       localStorage.setItem("awsCredentials", JSON.stringify(awsCreds));
+      
       alert("Signed in successfully!");
       navigate("/");
     } catch (err: any) {

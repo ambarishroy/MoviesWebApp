@@ -26,7 +26,7 @@ const WriteReviewPage: React.FC = () => {
         <>
             {movie ? (
                     <PageTemplate movie={movie}>
-                        <ReviewForm {...movie} />
+                        <ReviewForm movieId={movie.id} />
                     </PageTemplate>
             ) : (
                 <p>Waiting for movie review details</p>

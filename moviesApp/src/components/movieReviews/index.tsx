@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { getMovieReviews } from "../../api/tmdb-api";
 import { excerpt } from "../../utils";
 
-import { MovieDetailsProps, Review } from "../../types/interfaces"; // Import the MovieT type from the appropriate location
+import { MovieDetailsProps, Review } from "../../types/interfaces";
 
 const styles = {
     table: {
@@ -25,7 +25,7 @@ const MovieReviews: React.FC<MovieDetailsProps> = (movie) => {
         getMovieReviews(movie.id).then((reviews) => {
             setReviews(reviews);
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
+        
     }, []);
 
     return (

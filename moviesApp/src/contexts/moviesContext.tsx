@@ -10,6 +10,8 @@ interface MovieContextInterface {
     favouriteTVSeries: number[];
     addToFavouriteTVSeries: (series: BaseMovieProps) => void;
     removeFromFavouriteTVSeries: (id: number) => void;
+    clearFavourites: () => void;
+    clearFavouriteTVSeries: () => void;
 }
 const initialContextState: MovieContextInterface = {
     favourites: [],
@@ -19,6 +21,8 @@ const initialContextState: MovieContextInterface = {
     favouriteTVSeries: [],
     addToFavouriteTVSeries: () => {},
     removeFromFavouriteTVSeries: () => {},
+    clearFavourites: () => {},
+clearFavouriteTVSeries: () => {},
 };
 
 export const MoviesContext = React.createContext<MovieContextInterface>(initialContextState);
@@ -59,7 +63,13 @@ export const MoviesContext = React.createContext<MovieContextInterface>(initialC
     const removeFromFavouriteTVSeries = (id: number) => {
         setFavouriteTVSeries(favouriteTVSeries.filter((seriesId) => seriesId !== id));
       };
+      const clearFavourites = () => {
+        setFavourites([]);
+      };
       
+      const clearFavouriteTVSeries = () => {
+        setFavouriteTVSeries([]);
+      };
 
     return (
         <MoviesContext.Provider
@@ -70,7 +80,9 @@ export const MoviesContext = React.createContext<MovieContextInterface>(initialC
                 addReview,
                 favouriteTVSeries,         
                 addToFavouriteTVSeries,
-                removeFromFavouriteTVSeries
+                removeFromFavouriteTVSeries,
+                clearFavourites,
+                clearFavouriteTVSeries,
             }}
         >
             {children}

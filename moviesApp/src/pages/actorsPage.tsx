@@ -3,6 +3,7 @@ import { getPopularActors } from "../api/tmdb-api";
 import { Button, Grid, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import Header from "../components/headerMovieList";
+import PaginationControl from "../components/Pagination/PaginationControl";
 
 interface Actor {
   id: number;
@@ -29,12 +30,14 @@ const ActorsPage: React.FC = () => {
     load();
   }, [page]);
 
+  const handlePageChange = (_event: React.ChangeEvent<unknown>, value: number) => {
+    setPage(value);
+  };
+
   return (
     <div>
-      <Typography variant="h3" align="center" gutterBottom>
-        <Header title="Popuplar actors" />
-      </Typography>
-      
+      <Header title="Popular Actors" />
+
       <Grid container spacing={4} justifyContent="center">
         {actors.map((actor) => (
           <Grid key={actor.id} item xs={12} sm={6} md={4} lg={3}>
@@ -70,15 +73,12 @@ const ActorsPage: React.FC = () => {
         ))}
       </Grid>
 
-      <div style={{ marginTop: "20px", textAlign: "center" }}>
-        <button onClick={() => setPage(p => Math.max(p - 1, 1))} disabled={page === 1}>
-          Prev
-        </button>
-        <span style={{ margin: "0 10px" }}>Page {page} of {totalPages}</span>
-        <button onClick={() => setPage(p => Math.min(p + 1, totalPages))} disabled={page === totalPages}>
-          Next
-        </button>
-      </div>
+      <PaginationControl
+        totalItems={totalPages * 20}
+        itemsPerPage={20}
+        currentPage={page}
+        onPageChange={handlePageChange}
+      />
     </div>
   );
 };

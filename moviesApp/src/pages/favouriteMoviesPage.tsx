@@ -57,7 +57,7 @@ const FavouriteMoviesPage: React.FC = () => {
     setFilterValues(updatedFilterSet);
   };
 
-  const toDo = () => true;
+  
 <Header title="Favourite Movies" />
   return (
     <>

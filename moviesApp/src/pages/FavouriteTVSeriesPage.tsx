@@ -11,6 +11,7 @@ import MovieFilterUI, {
 } from "../components/movieFilterUI";
 import RemoveFromFavouritesTVSeries from "../components/cardIcons/RemoveFromFavouritesTVSeries";
 import Header from "../components/headerMovieList";
+import WriteTVSeriesReview from "../components/cardIcons/WriteTVSeriesReview";
 const titleFiltering = {
   name: "title",
   value: "",
@@ -62,7 +63,7 @@ const FavouriteTVSeriesPage: React.FC = () => {
     setFilterValues(updatedFilterSet);
   };
 
-  const toDo = () => true;
+  
 <Header title="Favourite TV Series" />
   return (
     <>
@@ -73,6 +74,7 @@ const FavouriteTVSeriesPage: React.FC = () => {
           return (
             <>
               <RemoveFromFavouritesTVSeries {...series} />
+              <WriteTVSeriesReview tvSeriesId={series.id} />
             </>
           );
         }}

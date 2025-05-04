@@ -9,11 +9,13 @@ import {
     reviewerEmail,
     content,
     date,
+    name
   }: {
     movieId: number;
     reviewerEmail: string;
     content: string;
     date: string;
+    name: string;
   }) => {
     const rawCreds = localStorage.getItem("awsCredentials");
   
@@ -42,6 +44,7 @@ import {
         ReviewerId: { S: reviewerEmail },
         ReviewDate: { S: date },
         Content: { S: content },
+        name: { S: name },
       },
     });
   

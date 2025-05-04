@@ -12,7 +12,7 @@ const styles = {
   }
 };
 
-const MovieListPageTemplate: React.FC<MovieListPageTemplateProps> = ({ movies, title, action })=> {
+const MovieListPageTemplate: React.FC<MovieListPageTemplateProps> = ({ movies, title, action, isTVSeries = false, })=> {
   return (
     <Grid container sx={styles.root}>
       <Grid item xs={12} sx={{ marginBottom: "16px" }}>
@@ -20,7 +20,7 @@ const MovieListPageTemplate: React.FC<MovieListPageTemplateProps> = ({ movies, t
     </Grid>
 
       <Grid item container spacing={5}>
-      <MovieList action={action} movies={movies}></MovieList>
+      <MovieList action={action} movies={movies} isTVSeries={isTVSeries} />
       </Grid>
     </Grid>
   );

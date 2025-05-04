@@ -93,7 +93,8 @@ const TvSeriesPage: React.FC = () => {
             <Grid key={series.id} item xs={12} sm={6} md={4} lg={3}>
               <MovieCard
                 movie={series}
-                action={() => <AddToFavouriteTVSeriesIcon series={series} />}
+                action={(series) => <AddToFavouriteTVSeriesIcon series={series} />}
+                isTVSeries={true}
               />
             </Grid>
           ))

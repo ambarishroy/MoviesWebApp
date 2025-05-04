@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -9,6 +9,8 @@ import {
 } from "@mui/material";
 import { postTVSeriesReview } from "../../aws/postTVSeriesReview";
 import { useParams } from "react-router-dom";
+import Header from "../headerMovieList";
+import { getTVSeries } from "../../api/tmdb-api";
 
 const TVSeriesReviewForm: React.FC = () => {
   const { id } = useParams();
@@ -17,18 +19,34 @@ const TVSeriesReviewForm: React.FC = () => {
   const [content, setContent] = useState("");
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
+  const [tvSeriesName, setTvSeriesName] = useState("");
+  const [loading, setLoading] = useState(false);
   const isLoggedIn = !!localStorage.getItem("awsCredentials");
-
+  useEffect(() => {
+    const fetchTVSeries = async () => {
+      try {
+        const series = await getTVSeries(tvSeriesId.toString());
+        setTvSeriesName(series.name || "Unknown");
+      } catch (err) {
+        console.error("Failed to load series info", err);
+        setError("Failed to load TV series info.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTVSeries();
+  }, [tvSeriesId]);
+  
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
     try {
       await postTVSeriesReview({
         tvSeriesId,
         reviewerEmail: localStorage.getItem("username") || "anonymous",
         content,
         date: new Date().toISOString().split("T")[0],
+        name: tvSeriesName,
       });
 
       setOpen(true);
@@ -40,6 +58,8 @@ const TVSeriesReviewForm: React.FC = () => {
   };
 
   return (
+    <div>
+    <Header title="TV Series Review"/>
     <Box sx={{ maxWidth: 600, margin: "auto", padding: 2 }}>
       <Typography variant="h6" gutterBottom>
         Write a Review
@@ -78,6 +98,7 @@ const TVSeriesReviewForm: React.FC = () => {
         </Alert>
       </Snackbar>
     </Box>
+    </div>
   );
 };
 

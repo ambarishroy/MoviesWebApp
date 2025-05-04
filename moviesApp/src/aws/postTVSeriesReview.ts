@@ -10,6 +10,7 @@ interface TVSeriesReview {
   reviewerEmail: string;
   content: string;
   date: string;
+  name: string;
 }
 
 export async function postTVSeriesReview(review: TVSeriesReview): Promise<void> {
@@ -40,6 +41,7 @@ export async function postTVSeriesReview(review: TVSeriesReview): Promise<void> 
     ReviewerId: review.reviewerEmail,
     ReviewDate: review.date,
     Content: review.content,
+    TVSeriesTitle: review.name
   };
 
   console.log("Sending to DynamoDB:", payload);

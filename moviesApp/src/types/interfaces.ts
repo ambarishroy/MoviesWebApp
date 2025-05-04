@@ -20,6 +20,7 @@ export interface BaseMovieProps {
   export interface BaseMovieListProps {
     movies: BaseMovieProps[];
     action: (m: BaseMovieProps) => React.ReactNode;
+    isTVSeries?: boolean;
   }
    
     export interface MovieDetailsProps extends BaseMovieProps {
@@ -44,6 +45,9 @@ export interface BaseMovieProps {
   export type FilterOption = "title" | "genre" | "sort";
   export interface MovieListPageTemplateProps extends BaseMovieListProps {
     title: string;
+    movies: BaseMovieProps[];
+    action: (movie: BaseMovieProps) => React.ReactNode;
+    isTVSeries?: boolean;
   }
   export interface Review{
     id: string;

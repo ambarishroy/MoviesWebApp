@@ -28,8 +28,9 @@ const styles = {
 interface MovieCardProps {
   movie: BaseMovieProps;
   action: (m: BaseMovieProps) => React.ReactNode;
+  isTVSeries?: boolean;
 }
-const MovieCard: React.FC<MovieCardProps> = ({movie, action}) => {
+const MovieCard: React.FC<MovieCardProps> = ({movie, action, isTVSeries}) => {
   const { favourites, addToFavourites, favouriteTVSeries, addToFavouriteTVSeries  } = useContext(MoviesContext);//NEW
 
 //const isFavourite = favourites.find((id) => id === movie.id)? true : false;//NEW
@@ -38,7 +39,7 @@ const isFavourite = favourites.includes(movie.id) || favouriteTVSeries.includes(
     <Card sx={styles.card}>
     <CardHeader
       avatar={
-        isFavourite ? (   //CHANGED
+        isFavourite ? (   
           <Avatar sx={styles.avatar}>
             <FavoriteIcon />
           </Avatar>
@@ -77,11 +78,12 @@ const isFavourite = favourites.includes(movie.id) || favouriteTVSeries.includes(
       <CardActions disableSpacing>
       {action(movie)}
 
-        <Link to={`/movies/${movie.id}`}>
-          <Button variant="outlined" size="medium" color="primary">
-            More Info ...
-          </Button>
-        </Link>
+      <Link to={isTVSeries ? `/tvseries/${movie.id}` : `/movies/${movie.id}`}>
+        <Button variant="outlined" size="medium" color="primary">
+          More Info
+        </Button>
+      </Link>
+
 
       </CardActions>
     </Card>

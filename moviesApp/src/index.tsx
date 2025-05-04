@@ -19,6 +19,9 @@ import ActorInfoPage from "./pages/ActorInfoPage";
 import FantasyMoviePage from "./pages/FantasyMoviePage";
 import SignInPage from "./pages/SignInPage";
 import TVSeriesReviewForm from "./components/tvseriesReviewform";
+import TVSeriesDetailsPage from "./pages/TVSeriesDetailsPage";
+import MyReviewsPage from "./pages/MyReviewsPage";
+
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -52,6 +55,8 @@ const App = () => {
         <Route path="/fantasy-movie" element={<FantasyMoviePage />} />
         <Route path="/signin" element={<SignInPage />} />
         <Route path="/tvseries/:id/review" element={<TVSeriesReviewForm />} />
+        <Route path="/tvseries/:id" element={<TVSeriesDetailsPage />} />
+        <Route path="/my-reviews" element={<MyReviewsPage />} />
 
 
       </Routes>

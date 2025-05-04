@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -8,6 +8,7 @@ import {
   Alert,
 } from "@mui/material";
 import { submitReview } from "../../aws/submitReview";
+import { getMovie } from "../../api/tmdb-api";
 
 interface ReviewFormProps {
   movieId: number;
@@ -17,8 +18,23 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ movieId }) => {
   const [content, setContent] = useState("");
   const [open, setOpen] = useState(false);
   const [error, setError] = useState("");
+  const [movieName, setMovieName] = useState("");
+  const [loading, setLoading] = useState(false);
   const isLoggedIn = !!localStorage.getItem("awsCredentials");
-
+ useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const movie = await getMovie(movieId.toString());
+        setMovieName(movie.title || "Unknown");
+      } catch (err) {
+        console.error("Failed to load movie info", err);
+        setError("Failed to load movie info.");
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMovie();
+  }, [movieId]);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -29,6 +45,7 @@ const ReviewForm: React.FC<ReviewFormProps> = ({ movieId }) => {
         reviewerEmail: localStorage.getItem("username") || "anonymous",
         content,
         date: new Date().toISOString().split("T")[0],
+        name: movieName,
       }); 
       
       console.log("Review submitted via DynamoDB directly.");

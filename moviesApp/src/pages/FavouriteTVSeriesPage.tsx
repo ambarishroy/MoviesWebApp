@@ -10,7 +10,6 @@ import MovieFilterUI, {
   genreFilter,
 } from "../components/movieFilterUI";
 import RemoveFromFavouritesTVSeries from "../components/cardIcons/RemoveFromFavouritesTVSeries";
-import Header from "../components/headerMovieList";
 import WatchOptions from "../components/cardIcons/WatchOptions";
 import WriteTVSeriesReview from "../components/cardIcons/writeTVSeriesReview";
 import PaginationControl from "../components/Pagination/PaginationControl";
@@ -93,6 +92,7 @@ const FavouriteTVSeriesPage: React.FC = () => {
             <WriteTVSeriesReview tvSeriesId={series.id} />
           </>
         )}
+        isTVSeries={true}
       />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}

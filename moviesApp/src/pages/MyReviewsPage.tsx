@@ -90,7 +90,7 @@ const MyReviewsPage: React.FC = () => {
 
   return (
     <div>
-    <Header title="My Reviews" />
+    <Header title="REVIEWS" />
     <Box sx={{ maxWidth: 800, margin: "auto", padding: 4 }}>
       
       {loading && <CircularProgress />}

@@ -25,7 +25,7 @@ const TVSeriesDetailsPage: React.FC = () => {
 
   return (
     <div>
-        <Header title={`TV Series: ${series.name}`} />
+        <Header title={`TV SERIES: ${series.name}`} />
         <TVSeriesDetails {...mappedSeries} />
     </div>);
 };

@@ -39,7 +39,7 @@ const MovieFilterUI: React.FC<MovieFilterUIProps> = ({ onFilterValuesChange, tit
     return (
         <>
             <Fab
-                color="secondary"
+                color="info"
                 variant="extended"
                 onClick={() => setDrawerOpen(true)}
                 sx={styles.fab}

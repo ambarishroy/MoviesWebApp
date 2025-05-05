@@ -7,7 +7,7 @@ import {  MovieListPageTemplateProps} from "../../types/interfaces";
 const styles = {
   root: { 
     backgroundColor: "#ffffff",
-    padding: "8px 16px",            
+    padding: "8px 8px",            
     minHeight: "100vh",     
   }
 };

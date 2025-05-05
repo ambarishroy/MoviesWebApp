@@ -80,7 +80,7 @@ const TvSeriesPage: React.FC = () => {
 
   return (
     <div>
-      <Header title="TV Series" />
+      <Header title="TV SERIES" />
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
         titleFilter={filterValues[0].value}

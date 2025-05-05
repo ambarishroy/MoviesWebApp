@@ -15,7 +15,7 @@ import Header from "../components/headerMovieList";
 import WatchOptions from "../components/cardIcons/WatchOptions";
 import PaginationControl from "../components/Pagination/PaginationControl";
 import ClearFavouritesButton from "../components/cardIcons/ClearFavouritesButton";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 
 const titleFiltering = {
   name: "title",
@@ -47,8 +47,17 @@ const FavouriteMoviesPage: React.FC = () => {
 
   const isLoading = favouriteMovieQueries.find((m) => m.isLoading === true);
   if (isLoading) return <Spinner />;
+
   if (movieIds.length === 0) {
-    return <h2>No Favorite Movies yet!</h2>;
+    return (
+      <Typography
+        variant="h5"
+        align="center"
+        sx={{ fontWeight: "bold", color: "#555", mt: 4 }}
+      >
+        No Favorite movies yet!
+      </Typography>
+    );
   }
   const allFavourites = favouriteMovieQueries.map((q) => q.data);
   const filteredMovies = allFavourites ? filterFunction(allFavourites) : [];
@@ -79,7 +88,7 @@ const FavouriteMoviesPage: React.FC = () => {
     <>
     <ClearFavouritesButton type="movies" />
       <PageTemplate
-        title="Favourite Movies"
+        title="YOUR FAVOURITE MOVIES"
         movies={displayedMovies}
         action={(movie) => (
           <>

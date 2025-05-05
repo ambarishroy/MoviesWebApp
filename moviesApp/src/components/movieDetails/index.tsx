@@ -67,7 +67,7 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
                 />
                 <Chip label={`Released: ${movie.release_date}`} />
             </Paper>
-            <Fab
+            {/* <Fab
                 color="secondary"
                 variant="extended"
                 onClick={() => setDrawerOpen(true)}
@@ -75,10 +75,10 @@ const MovieDetails: React.FC<MovieDetailsProps> = (movie) => {
             >
                 <NavigationIcon />
                 Reviews
-            </Fab>
-            <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
+            </Fab> */}
+            {/* <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
                 <MovieReviews {...movie} />
-            </Drawer>
+            </Drawer> */}
         </>
     );
 };

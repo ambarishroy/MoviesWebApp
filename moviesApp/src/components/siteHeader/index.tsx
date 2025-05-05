@@ -48,14 +48,27 @@ const SiteHeader: React.FC = () => {
   
   return (
     <>
-      <AppBar position="fixed" elevation={0} color="primary">
+      <AppBar position="fixed"  elevation={1}
+          sx={{
+            backgroundColor: "#0D47A1",
+            fontFamily: "'Inter', 'Roboto', sans-serif",
+          }}>
         <Toolbar>
-          <Typography variant="h4" sx={styles.title}>
-            TMDB Client
-          </Typography>
-          <Typography variant="h6" sx={styles.title}>
-            All you ever wanted to know about Movies!
-          </Typography>
+        <Typography
+          variant="h5"
+          sx={{
+            flexGrow: 1,
+            fontWeight: 600,
+            fontFamily: "'Inter', 'Roboto', sans-serif",
+            letterSpacing: "1px",
+          }}
+        >
+          THE MOVIE LOG
+        </Typography>
+
+          {/* <Typography variant="h6" sx={styles.title}>
+            Welcome
+          </Typography> */}
           {isMobile ? (
             <>
               <IconButton
@@ -96,7 +109,7 @@ const SiteHeader: React.FC = () => {
           ) : (
             <>
           <>
-          <Button color="inherit" onClick={() => navigate("/")}>
+              <Button color="inherit" onClick={() => navigate("/")} >
                 Home
               </Button>
               <Button color="inherit" onClick={() => navigate("/movies/popular")}>

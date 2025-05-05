@@ -43,7 +43,7 @@ const ActorInfoPage: React.FC = () => {
   if (loading || !actor) return <Spinner />;
 
   return (  
-    <div style={{ padding: "2rem" }}>
+    <div>
       <Header title={`Movies Featuring ${actor.name}`} />
 
       <Grid container spacing={4}>
@@ -69,7 +69,7 @@ const ActorInfoPage: React.FC = () => {
       </Grid>
 
       <Typography variant="h4" style={{ marginTop: "3rem" }}>
-        Movies Featuring {actor.name}
+        MOVIES FEATURING {actor.name}
       </Typography>
       <Grid container spacing={4} style={{ marginTop: "1rem" }}>
         {movies.map((movie) => (

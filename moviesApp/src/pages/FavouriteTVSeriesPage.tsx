@@ -14,6 +14,7 @@ import WatchOptions from "../components/cardIcons/WatchOptions";
 import WriteTVSeriesReview from "../components/cardIcons/writeTVSeriesReview";
 import PaginationControl from "../components/Pagination/PaginationControl";
 import ClearFavouritesButton from "../components/cardIcons/ClearFavouritesButton";
+import { Typography } from "@mui/material";
 
 const titleFiltering = {
   name: "title",
@@ -49,7 +50,15 @@ const FavouriteTVSeriesPage: React.FC = () => {
   }
 
   if (seriesIds.length === 0) {
-    return <h2>No Favorite TV Series yet!</h2>;
+    return (
+      <Typography
+        variant="h5"
+        align="center"
+        sx={{ fontWeight: "bold", color: "#555", mt: 4 }}
+      >
+        No Favorite TV Series yet!
+      </Typography>
+    );
   }
 
   const allFavourites = favouriteTVSeriesQueries
@@ -83,7 +92,7 @@ const FavouriteTVSeriesPage: React.FC = () => {
     <>
     <ClearFavouritesButton type="tvseries" />
       <PageTemplate
-        title="Favourite TV Series"
+        title="YOUR FAVOURITE TV SERIES"
         movies={displayedSeries}
         action={(series) => (
           <>

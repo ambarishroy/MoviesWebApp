@@ -67,7 +67,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
       <CardContent>
         <Typography variant="h5" component="h1">
           <FilterAltIcon fontSize="large" />
-          Filter the movies.
+          Filter.
         </Typography>
         <TextField
       sx={styles.formControl}
@@ -103,7 +103,7 @@ const FilterMoviesCard: React.FC<FilterMoviesCardProps> = ({ titleFilter, genreF
   <CardContent>
     <Typography variant="h5" component="h1">
       <SortIcon fontSize="large" />
-      Sort the movies.
+      Sort.
     </Typography>
     <FormControl sx={styles.formControl}>
       <InputLabel id="sort-label">Sort By</InputLabel>

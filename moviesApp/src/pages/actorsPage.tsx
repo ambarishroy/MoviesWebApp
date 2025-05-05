@@ -36,7 +36,7 @@ const ActorsPage: React.FC = () => {
 
   return (
     <div>
-      <Header title="Popular Actors" />
+      <Header title="POPULAR ACTORS" />
 
       <Grid container spacing={4} justifyContent="center">
         {actors.map((actor) => (

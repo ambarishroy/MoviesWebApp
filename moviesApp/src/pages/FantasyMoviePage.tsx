@@ -78,7 +78,7 @@ const FantasyMoviePage: React.FC = () => {
   return (
     <div>
       
-      <Header title="Your fantasy movie" />
+      <Header title="CREATE YOUR FANTASY MOVIE" />
       
       <Box sx={{ maxWidth: 600, margin: "auto", padding: 4 }}>
         {!isLoggedIn && (

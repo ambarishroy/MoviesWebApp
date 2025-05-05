@@ -27,7 +27,7 @@ const ClearFavouritesButton: React.FC<ClearFavouritesButtonProps> = ({ type }) =
   return (
     <Button
       variant="outlined"
-      color="secondary"
+      color="warning"
       onClick={handleClear}
       disabled={shouldDisable}
       sx={{  position: "fixed",

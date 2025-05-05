@@ -15,8 +15,9 @@ const styles = {
     alignItems: "center",
     padding: "8px 16px",
     gap: "16px",
-    backgroundColor: "#f5f5d5",
+    backgroundColor: "#1f4a8df0",
     borderBottom: "1px solid #ddd",
+    marginBottom: "16px",
   },
 };
 
@@ -25,11 +26,14 @@ const MovieHeader: React.FC<MovieDetailsProps> = (movie) => {
 
   return (
     <Paper component="div" sx={styles.root}>
-      <IconButton aria-label="go back" onClick={() => navigate(-1)}>
-        <ArrowBackIcon color="primary" fontSize="large" />
+      <IconButton
+        aria-label="go back"
+        onClick={() => navigate(-1)}
+        sx={{ color: "#ffffff" }}
+      >
+        <ArrowBackIcon fontSize="large" />
       </IconButton>
-
-      <Typography variant="h6" component="h2" sx={{ margin: "0 auto", textAlign: "center" }}>
+      <Typography variant="h6" component="h2" sx={{ margin: "0 auto", textAlign: "center", color: "#fff", fontFamily: "'Inter', 'Roboto', sans-serif" }}>
             {movie.title}
         </Typography>
 

@@ -75,7 +75,8 @@ const PopularMovies: React.FC = () => {
 
   return (
     <div>
-      <Header title="Popular Movies" />
+      
+      <Header title="POPULAR MOVIES" />
 
       <MovieFilterUI
         onFilterValuesChange={changeFilterValues}
